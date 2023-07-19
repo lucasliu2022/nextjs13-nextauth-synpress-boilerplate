@@ -1,9 +1,9 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
 import { AppConfig } from '@/utils/AppConfig';
-
-const inter = Inter({ subsets: ['latin'] });
+import { Header, Footer } from '@/containers';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,14 +13,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="w-full" suppressHydrationWarning={true}>
+        <main className="min-h-screen lex flex-col items-center justify-between">
+          <Header user={session?.user} />
+          <main>{children}</main>
+          <Footer />
+        </main>
+      </body>
     </html>
   );
 }
