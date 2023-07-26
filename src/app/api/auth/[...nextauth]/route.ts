@@ -1,18 +1,19 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 
-// import CredentialsProvider from 'next-auth/providers/credentials';
-
-// Social Providers
+// Import social providers for authentication
 import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from 'next-auth/providers/twitter';
 
-// // Custom Providers
+// Custom Providers (uncomment and import if used)
 // import LoginProvider from '@/lib/providers/loginProvider';
 // import SignupProvider from '@/lib/providers/signupProvider';
 // import VerifyEmailProvider from '@/lib/providers/verifyEmailProvider';
 // import MfaLoginProvider from '@/lib/providers/mfaLoginProvider';
 
+// Initialize an empty array to hold the authentication providers
 let providers = [];
+
+// Check if Google credentials are provided and add GoogleProvider to the providers array
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   providers.push(
     GoogleProvider({
@@ -22,6 +23,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   );
 }
 
+// Check if Twitter credentials are provided and add TwitterProvider to the providers array
 if (process.env.TWITTER_CLIENT_ID && process.env.TWITTER_CLIENT_SECRET) {
   providers.push(
     TwitterProvider({
@@ -31,9 +33,7 @@ if (process.env.TWITTER_CLIENT_ID && process.env.TWITTER_CLIENT_SECRET) {
   );
 }
 
-/**
- * next auth credentials login or signin handler
- */
+// Example: Custom Credentials Provider (uncomment and add to the providers array if used)
 // providers.push([
 //   CredentialsProvider({
 //     name: 'Credentials',
@@ -43,8 +43,8 @@ if (process.env.TWITTER_CLIENT_ID && process.env.TWITTER_CLIENT_SECRET) {
 //     },
 
 //     async authorize(credentials) {
-//       // handle logic here
-//       return null
+//       // Custom authentication logic here
+//       return null;
 //     },
 //   }),
 //   LoginProvider,
@@ -53,37 +53,45 @@ if (process.env.TWITTER_CLIENT_ID && process.env.TWITTER_CLIENT_SECRET) {
 //   MfaLoginProvider
 // ]);
 
+// Configuration options for NextAuth
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    // handle initial requests
+    // Handle JWT updates and custom logic here
     async jwt({ token, user, account, trigger, session }) {
-      // next auth session update function
+      // Example: Handle session updates with NextAuth update function
       if (trigger === 'update') {
+        // Custom logic for session updates
       }
 
-      // next auth social providers
+      // Example: Handle different authentication providers (Google, Twitter, Custom Credentials)
       if (account?.provider === 'google') {
+        // Custom logic for Google provider
       }
       if (account?.provider === 'twitter') {
+        // Custom logic for Twitter provider
       }
       if (account?.provider === 'credentials') {
+        // Custom logic for Custom Credentials provider
       }
 
       return token;
     },
 
-    // update session from jwt function response
+    // Update session data based on JWT response
     async session({ session, token }) {
+      // Custom session data handling logic here
       return session;
     },
   },
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt', // Use JWT for session management
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  providers,
+  secret: process.env.NEXTAUTH_SECRET, // Set the NextAuth secret from environment variables
+  providers, // Use the configured authentication providers
 };
 
+// Initialize NextAuth with the provided options
 const handler = NextAuth(authOptions);
 
+// Export the handler for both GET and POST requests (can be customized)
 export { handler as GET, handler as POST };
