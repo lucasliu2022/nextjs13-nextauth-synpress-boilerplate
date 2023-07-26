@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { AppConfig } from '@/utils/AppConfig';
 import { Header, Footer } from '@/containers';
 import { getServerSession } from 'next-auth';
-import { authOptions } from './api/auth/[...nextauth]';
+import { authOptions } from './api/auth/[...nextauth]/route';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

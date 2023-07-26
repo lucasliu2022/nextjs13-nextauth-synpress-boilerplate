@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { signOut } from 'next-auth/react';
 
 import { Logo, Modal } from '@/components';
 import { Login } from './Login';
@@ -490,20 +491,20 @@ export const Header: React.FC<{ user: TUserData }> = ({ user }) => {
                   </div>
                 )}
                 <div className="py-6">
-                  {!user ? (
-                    <Link
-                      href="/"
+                  {user ? (
+                    <button
+                      onClick={() => signOut()}
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       Sign out
-                    </Link>
+                    </button>
                   ) : (
-                    <Link
-                      href="/"
+                    <button
+                      onClick={() => setShowLogin(true)}
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       Log in
-                    </Link>
+                    </button>
                   )}
                 </div>
               </div>
