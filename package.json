@@ -11,8 +11,6 @@
     "sy:test": "synpress run -cf synpress.config.ts"
   },
   "dependencies": {
-    "@stripe/react-stripe-js": "^2.1.1",
-    "@stripe/stripe-js": "^1.54.0",
     "@synthetixio/synpress": "^3.7.1",
     "@types/jest": "^29.5.2",
     "@types/node": "20.3.1",
