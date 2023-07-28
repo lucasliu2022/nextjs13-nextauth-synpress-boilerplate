@@ -35,7 +35,6 @@ npm install
 # or
 
 yarn install
-
 ```
 
 3. Configure NextAuth.js:
@@ -49,13 +48,11 @@ Create a `.env.local` file in the root of the project and set the required envir
 5. Run the development server:
 
 ```
-
 npm run dev
 
 # or
 
 yarn dev
-
 ```
 
 The development server will start, and you can access your application at `http://localhost:3000`.
@@ -66,13 +63,11 @@ Synpress is set up in this project for end-to-end testing. To run the Synpress t
 And use the following command:
 
 ```
-
 npm run sy:open
 
 # or
 
 yarn sy:open
-
 ```
 
 This will open the Cypress test runner, and you can execute the tests from there.
@@ -82,13 +77,11 @@ This will open the Cypress test runner, and you can execute the tests from there
 To build the production-ready version of your app, use the following command:
 
 ```
-
 npm run build
 
 # or
 
 yarn build
-
 ```
 
 This will create an optimized build of your application in the `build` directory.
