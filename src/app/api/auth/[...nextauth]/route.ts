@@ -3,6 +3,9 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 // Import social providers for authentication
 import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from 'next-auth/providers/twitter';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { prisma } from '@/utils/prisma';
+import { Adapter } from 'next-auth/adapters';
 
 // Custom Providers (uncomment and import if used)
 // import LoginProvider from '@/lib/providers/loginProvider';
@@ -55,6 +58,7 @@ if (process.env.TWITTER_CLIENT_ID && process.env.TWITTER_CLIENT_SECRET) {
 
 // Configuration options for NextAuth
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma) as Adapter,
   callbacks: {
     // Handle JWT updates and custom logic here
     async jwt({ token, user, account, trigger, session }) {

@@ -12,4 +12,7 @@
   "editor.insertSpaces": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }
