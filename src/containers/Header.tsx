@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { signOut } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 import { Logo, Modal } from '@/components';
 import { Login } from './Login';
@@ -340,7 +340,7 @@ export const Header: React.FC<{ user: TUserData }> = ({ user }) => {
         ) : (
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <button
-              onClick={() => setShowLogin(true)}
+              onClick={() => signIn()}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Log in <span aria-hidden="true">&rarr;</span>
