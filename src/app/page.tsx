@@ -1,4 +1,5 @@
 import { Button } from '@/components';
+import Form from '@/components/Form';
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
           <Button label="Get Started" />
         </div>
       </div>
+      <section className="">
+        <Form />
+      </section>
     </div>
   );
 }
